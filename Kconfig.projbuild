@@ -10,31 +10,53 @@ menu "MyFi Configuration"
         string "SSID Password"
         default "password"
         help
-	    SSID password (WPA or WPA2).
+            SSID password (WPA or WPA2).
 
     config MYFI_RETRY_MAX
-        int "Maximum retry"
+        int "Maximum number of retry attempts"
         default 5
         help
-	    Maximum number of attempts before aborting attempt to connect.
+            Maximum number of times to attempt to connect.
+
+    config MYFI_USE_STATIC_IP
+        bool "Set static IP Address"
+        default n
+        help
+            Check to use a static IP address.
 
     config MYFI_IP
-        string "Static IP address"
+        string "Static IP"
         default "192.168.0.100"
         help
             Static IP address.
+        depends on MYFI_USE_STATIC_IP
 
     config MYFI_GATEWAY
-        string "Static gateway address"
+        string "Gateway"
         default "192.168.0.1"
         help
-            Static gateway address.
+            Gateway IP address.
+        depends on MYFI_USE_STATIC_IP
 
     config MYFI_NETMASK
-        string "Static netmask address"
+        string "Netmask"
         default "255.255.255.0"
         help
-            Static netmask address.
+            Network netmask.
+        depends on MYFI_USE_STATIC_IP
 
+    config MYFI_DNS_PRIMARY
+        string "Primary DNS Server"
+        default "0.0.0.0"
+        help
+            Primary DNS server.
+        depends on MYFI_USE_STATIC_IP
+
+    config MYFI_DNS_SECONDARY
+        string "Secondary DNS Server"
+        default "0.0.0.0"
+        help
+            Secondary DNS server.
+        depends on MYFI_USE_STATIC_IP
 
 endmenu

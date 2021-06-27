@@ -1,10 +1,17 @@
 /**
  * @file myfi.h
  *
- * Connect to a Wi-Fi access point.
+ * Connect to Wi-Fi access point.
  */
 
 #pragma once
 
-void myfi_connect(void);
-void myfi_disconnect(void);
+/**
+ * Connect to Wi-Fi access point.
+ *
+ * @return
+ *   - ESP_OK: Sucess
+ *   - ESP_ERR_TIMEOUT: If unable to connect in CONFIG_MYFI_RETRY_MAX attempts
+ *   - ESP_FAIL: Otherwise
+ */
+esp_err_t myfi_connect(void);
